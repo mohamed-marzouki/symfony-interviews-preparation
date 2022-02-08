@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM php:7.4-fpm-alpine
 
 LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
 
@@ -34,7 +34,7 @@ RUN apk add --update --no-cache \
     php7-xmlwriter \
     make \
     curl
-
+RUN docker-php-ext-install pdo_mysql
 RUN echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-setup.php.sig \
     && curl -sS https://getcomposer.org/installer | tee composer-setup.php | sha384sum -c composer-setup.php.sig \
     && php composer-setup.php && rm composer-setup.php* \

@@ -3,7 +3,6 @@ services:
   db:
     container_name: db
     image: mysql
-    command: ["--default-authentication-plugin=mysql_native_password"]
     ports:
       - "3308:3306"
     environment:
@@ -16,7 +15,7 @@ services:
     volumes:
       - ./db:/var/lib/mysql
   php:
-    container_name: php-fpm
+    container_name: php_fpm
     build: ./php-fpm
     ports:
       - "9000:9001"
